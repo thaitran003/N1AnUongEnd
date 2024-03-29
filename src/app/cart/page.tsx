@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const CartPage = () => {
-  const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
+  const { products, totalItems, totalPrice, removingItems, removeFromCart } =
+    useCartStore();
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -25,7 +26,7 @@ const CartPage = () => {
           body: JSON.stringify({
             price: totalPrice,
             products,
-            status: "Not Paid!",
+            status: "Chưa thanh toán!",
             userEmail: session.user.email,
           }),
         });
@@ -57,7 +58,7 @@ const CartPage = () => {
             <h2 className="font-bold">{item.price} VNĐ</h2>
             <span
               className="cursor-pointer hover:font-bold"
-              onClick={() => removeFromCart(item)}
+              onClick={() => !removingItems && removeFromCart(item)}
             >
               X
             </span>

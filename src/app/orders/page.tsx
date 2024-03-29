@@ -75,11 +75,11 @@ const OrdersPage = () => {
       <table className="w-full border-separate border-spacing-3">
         <thead>
           <tr className="text-left">
-            <th className="hidden md:block">Order ID</th>
-            <th>Date</th>
-            <th>Price</th>
-            <th className="hidden md:block">Products</th>
-            <th>Status</th>
+            <th className="hidden md:block">Mã đơn hàng</th>
+            <th>Ngày tạo đơn</th>
+            <th>Giá</th>
+            <th className="hidden md:block">Sản phẩm</th>
+            <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>

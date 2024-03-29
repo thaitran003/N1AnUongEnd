@@ -40,7 +40,7 @@ const CategoryPage = () => {
   }, [category]);
 
   return (
-    <div className="flex xl:flex-row flex-col">
+    <div className="flex xl:flex-row flex-col mb-12 md:mb-0">
       <CategorySwitchPage />
       <div className="flex flex-7 flex-wrap w-full text-red-500 min-h-screen overflow-hidden">
         {products.map((item: Product) => (
