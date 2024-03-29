@@ -26,7 +26,7 @@ const OrdersPage = () => {
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`${process.env.URL_BACKEND}/api/orders/${id}`, {
+      return fetch(`/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const OrdersPage = () => {
 
   const remove = useMutation({
     mutationFn: ({ id }: { id: string }) => {
-      return fetch(`${process.env.URL_BACKEND}/api/orders/${id}`, {
+      return fetch(`/api/orders/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
