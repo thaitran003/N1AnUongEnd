@@ -60,18 +60,18 @@ const OrdersPage = () => {
     const status = input.value;
 
     mutation.mutate({ id, status });
-    toast.success("The order status has been changed!");
+    // toast.success("The order status has been changed!");
   };
 
   const handleDelete = (id: string) => {
     remove.mutate({ id });
-    toast.success("The order has been removed!");
+    // toast.success("The order has been removed!");
   };
 
   if (isLoading || status === "loading") return <Loading />;
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40">
+    <div className="p-4 lg:px-20 xl:px-40 min-h-[calc(100vh-6rem)]">
       <table className="w-full border-separate border-spacing-3">
         <thead>
           <tr className="text-left">

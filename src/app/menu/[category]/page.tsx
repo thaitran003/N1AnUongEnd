@@ -60,8 +60,8 @@ const CategoryPage = () => {
               </div>
             )}
             <div className="flex items-center justify-between font-bold">
-              <h1 className="text-xl uppercase p-2">{item.title}</h1>
-              <h2 className="group-hover:hidden text-xl">{item.price} VNĐ</h2>
+              <h1 className="text-lg uppercase p-2">{item.title}</h1>
+              <h2 className="group-hover:hidden text-lg">{item.price} VNĐ</h2>
               <button className="hidden group-hover:block uppercase bg-red-500 text-white p-2 rounded-md">
                 Thêm vào giỏ hàng
               </button>
