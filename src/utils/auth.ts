@@ -1,8 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions, User, getServerSession } from "next-auth";
 import { prisma } from "./connect";
-import Facebook from "next-auth/providers/facebook";
-import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 declare module "next-auth" {
   interface Session {
