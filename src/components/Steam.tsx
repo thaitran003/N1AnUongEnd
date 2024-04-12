@@ -16,7 +16,7 @@ export const Steam = async () => {
 
     const data = await getData()
 
-    const categories = data.map(item => item.date);
+    // const categories = data.map(item => item.date);
 
     const state: Props["series"] = [
         {
