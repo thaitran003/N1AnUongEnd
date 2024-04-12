@@ -103,7 +103,7 @@ export const GET = async (req: NextRequest) => {
         );
     }
 };
-export function getDaysInMonth(month:number, year:number) {
+function getDaysInMonth(month:number, year:number) {
     var date = new Date(year, month, 1);
     var days = [];
     while (date.getMonth() === month) {
