@@ -2,7 +2,7 @@ import React from "react";
 import Chart, { Props } from "react-apexcharts";
 
 const getData = async () => {
-    const res = await fetch(`/api/dashboards/dailies`, {
+    const res = await fetch(`/api/dashboards?month=3`, {
         cache: "no-store",
     });
     if (!res.ok) {
@@ -14,20 +14,37 @@ const getData = async () => {
 
 export const Steam = async () => {
 
-    const data = await getData()
-
-    // const categories = data.map(item => item.date);
+    const dataApi = await getData()
 
     const state: Props["series"] = [
         {
-            name: "Income",
-            data: [31, 40, 28, 51, 42, 109, 100],
-        },
-        {
-            name: "Expense",
+            name: "Thu nhập",
             data: [11, 32, 45, 32, 34, 52, 41],
         },
+        {
+            name: "Chi phí",
+            data: [31, 40, 28, 51, 42, 109, 100],
+        },
     ];
+
+    const stateII: Props["series"] = [{
+        name: 'Khách hàng',
+        type: 'column',
+        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
+    }, {
+        name: 'Thu nhập',
+        type: 'area',
+        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
+    }, {
+        name: 'Lợi nhuận',
+        type: 'line',
+        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
+    }]
+
+    const stateIII: Props["series"] = [{
+        name: 'Khách hàng',
+        data: dataApi.data,
+    }]
 
     const options: Props["options"] = {
         chart: {
@@ -46,12 +63,12 @@ export const Steam = async () => {
             foreColor: "hsl(var(--nextui-default-800))",
             stacked: true,
             toolbar: {
-                show: false,
+                show: true,
             },
         },
 
         xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+            categories: ["10-2023", "11-2023", "12-2023", "01-2024", "02-2024", "03-2024", "04-2024"],
             labels: {
                 style: {
                     colors: "hsl(var(--nextui-default-800))",
@@ -90,11 +107,93 @@ export const Steam = async () => {
         markers: false,
     };
 
+    const optionII: Props["options"] = {
+        chart: {
+            height: 350,
+            type: 'line',
+            stacked: false,
+        },
+        stroke: {
+            width: [0, 2, 5],
+            curve: 'smooth'
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: '50%'
+            }
+        },
+
+        fill: {
+            opacity: [0.85, 0.25, 1],
+            gradient: {
+                inverseColors: false,
+                shade: 'light',
+                type: "vertical",
+                opacityFrom: 0.85,
+                opacityTo: 0.55,
+                stops: [0, 100, 100, 100]
+            }
+        },
+        labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003',
+            '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'
+        ],
+        markers: {
+            size: 0
+        },
+        xaxis: {
+            type: 'datetime'
+        },
+        yaxis: {
+            title: {
+                text: 'Doanh thu',
+            },
+            min: 0
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return y.toFixed(0) + " phần trăm";
+                    }
+                    return y;
+
+                }
+            }
+        }
+    };
+
+    const optionIII: Props["options"] = {
+        chart: {
+            type: 'bar',
+            height: 350
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: dataApi.date
+        }
+    };
+
     return (
         <>
-            <div className="w-full z-20">
+            <div className="w-full z-20 flex flex-col gap-8">
                 <div id="chart">
                     <Chart options={options} series={state} type="area" height={425} />
+                </div>
+                <div id="chart">
+                    <Chart options={optionII} series={stateII} height={425} />
+                </div>
+                <div id="chart">
+                    <Chart options={optionIII} series={stateIII} type="bar" height={425} />
                 </div>
             </div>
         </>
